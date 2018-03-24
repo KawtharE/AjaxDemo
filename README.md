@@ -4,20 +4,21 @@
 
 **AJAX requests** simplify a lot of works when calling APIs, and since there are a lot of free APIs available out there, we can take advantage of theme in our applications. In this demo we are implementing three external APIs:
 
-  -Google Street View API
+   -Google Street View API
   
-  -New York Times API
+   -New York Times API
   
-  -Wikipedia API
+   -Wikipedia API
   
 This demo is responsive and work properly in all devices and we have achieved this by adopting two **Flex pattern**:
+
    **Layout Shifter Pattern** and **Off Canvas Pattern**
    
-####The demo on Desktop Browser
+#### The demo on Desktop Browser
 
 ![Starting Screen](https://github.com/KawtharE/AjaxDemo/blob/master/assets/DemoOnDesktopBrowser.gif)
 
-####The demo on different screen sizes
+#### The demo on different screen sizes
 
 ![Starting Screen](https://github.com/KawtharE/AjaxDemo/blob/master/assets/DemoResponsive.gif)
 
