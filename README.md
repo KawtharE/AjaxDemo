@@ -40,7 +40,7 @@ In fact for using this API we are not calling an AJAX request, we are just formi
 
 The Google Street View image URL must include **the size** and **the location** parameter. The location informations (street and city) are retrieved from the Form inputs using the **jquery val()** function:
 
-      	 var street = $('#street').val();
+      var street = $('#street').val();
          var city = $('#city').val();
          var fullAddress = street + ',' + city;
          var imgUrl = 'https://maps.googleapis.com/maps/api/streetview?size=600x300&location='+fullAddress+'';
@@ -49,11 +49,11 @@ The Google Street View image URL must include **the size** and **the location** 
          
 ### New York Times API
 
-The New York Times provieds a bunch of APIs, for this application we are going to use an **Article Search API** to pull all articles related to the address entred in the form.
+The New York Times provieds a bunch of APIs, for this application we are going to use the **Article Search API** to pull all articles related to the address entred in the form.
 
 To start with NYTimes API we need first to get an **API Key** from the site [NYTimes developers](https://www.nytimes.com/).
 
-Now for this AJAX request we have implemented it with the **getJSON** function, that will load for as a **JSON-encoded data** from he server:
+Now for this AJAX request we have implemented it with the **getJSON** function, that will load for us a **JSON-encoded data** from he server:
 
 	var nyTimesUrl = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q='+city+'&sort=newest&api-key=e6d2fdce685e4aa5b3fd867f2b011603';
       $.getJSON(nyTimesUrl, function(data){
