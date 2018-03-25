@@ -113,9 +113,9 @@ For the last asynchronous request, the wikipedia API request it is a little bit 
 
 ## Responsive design
 
-**Flexbox** is one of the most powerful tools that can be used for layout, it make position elements a very easy task even changing the order of elements is a lot easier with flex witout changing the HTML.
+**Flexbox** is one of the most powerful tools that can be used for layout, it make position elements a very easy task and even changing the order of elements is a lot easier with flex witout any need to change the HTML.
 
-We have adopted here two **Flex patterns: Layout Shifter Pattern and Off Canvas Pattern** in order to have a web application that looks great in all current devices and even futur devices:
+We have adopted here two **Flex patterns: Layout Shifter Pattern and Off Canvas Pattern** in order to have a web application that looks great in all current devices and even in futur devices:
 
 	div.container{
 		width: 100%;
@@ -132,7 +132,7 @@ We have adopted here two **Flex patterns: Layout Shifter Pattern and Off Canvas 
 		width: 35%;
 	}
 	
-**Break point** founded here are not choosen based on devices sizes (that's a bad practice) but based on **CSS changes** that need to be made. So we have ended up with 3 versions of the web application with no really big difference between them: one for **small devices (width=<300px)**, one for **medium devices (301px=<width=<600px)** and one for **larger devices**
+**Break points** founded here are not choosen based on devices sizes (that's a bad practice) but based on **CSS changes** that need to be made. So we have ended up with 3 versions of the web application with no really big difference between them: one for **small devices (width=<300px)**, one for **medium devices (301px=<width=<600px)** and one for **larger devices**
 
 	@media screen and (max-width: 300px){
 	.
