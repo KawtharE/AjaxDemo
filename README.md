@@ -40,7 +40,7 @@ In fact for using this API we are not calling an AJAX request, we are just formi
 
 The Google Street View image URL must include **the size** and **the location** parameter. The location informations (street and city) are retrieved from the Form inputs using the **jquery val()** function:
 
-      var street = $('#street').val();
+       var street = $('#street').val();
          var city = $('#city').val();
          var fullAddress = street + ',' + city;
          var imgUrl = 'https://maps.googleapis.com/maps/api/streetview?size=600x300&location='+fullAddress+'';
