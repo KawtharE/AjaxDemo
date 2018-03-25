@@ -40,7 +40,7 @@ In fact for using this API we are not calling an AJAX request, we are just formi
 
 The Google Street View image URL must include **the size** and **the location** parameter. The location informations (street and city) are retrieved from the Form inputs using the **jquery val()** function:
 
-      	var street = $('#street').val();
+      	 var street = $('#street').val();
          var city = $('#city').val();
          var fullAddress = street + ',' + city;
          var imgUrl = 'https://maps.googleapis.com/maps/api/streetview?size=600x300&location='+fullAddress+'';
@@ -53,7 +53,7 @@ The New York Times provieds a bunch of APIs, for this application we are going t
 
 To start with NYTimes API we need first to get an **API Key** from the site [NYTimes developers](https://www.nytimes.com/).
 
-Now for this request we have implemented it with the **getJSON** function, that will load for as a **JSON-encoded data** from he server:
+Now for this AJAX request we have implemented it with the **getJSON** function, that will load for as a **JSON-encoded data** from he server:
 
 	var nyTimesUrl = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q='+city+'&sort=newest&api-key=e6d2fdce685e4aa5b3fd867f2b011603';
       $.getJSON(nyTimesUrl, function(data){
@@ -70,8 +70,42 @@ Now for this request we have implemented it with the **getJSON** function, that 
       
 The **anonymous function** which is passed to the **getJSON function** as a parameter, is the **success callback** and **data** is **the server JSON response**.
 
-**.fail()** is the **error callback**.
+**.fail()** is the **error callback** in ordere to handle errors that can be a result of internet connection interruption, over requests call number per hour, etc.
 
 
 ### Wikipedia API
+
+For the last asynchronous request, the wikipedia API request it is a little bit different, no need for API key, however we can not make **JSON requests** because wikipedia servers do not allow **cross origin requests**. To set this issue we can either *set the origin and content type headers on the request* or use **JSONP**.
+
+**JSON with Padding (JSONP)** used to request data from server in different domain without thinking about **cross-domain issue**. It uses the **< script >** tag. We can recognize that the server API uses JSONP if the URL contain **callback=?** argument.
+
+	var wikiUrl = 'https://en.wikipedia.org/w/api.php?action=opensearch&search='+city+'&format=json&callback=wikiCallback';
+	$.ajax({
+		url: wikiUrl,
+		dataType: 'jsonp'
+	})
+	.done(function(response){
+		$wikiTitle.text('Wikipedia Links about '+fullAddress);
+        var wikiArticles = response[1];
+        for(var i=0; i<wikiArticles.length; i++){
+            wikiarticle = wikiArticles[i];
+            var link = 'http://en.wikipedia.org/wiki/'+wikiarticle;
+            $wikipedia.append('<li>'+'<a href="'+link+'">'+wikiarticle+'</a>'+'</li><br>')
+        }
+	})
+	
+**Error Handling with JSONP** due to technical limitation, there is no built-in method to handle errors but we still can achieve it in other ways. One of these ways is setting a timeout variable before calling the AJAX request by calling **setTimeout** method and then stopping the timeout inside the success callback by calling the **clearTimeout()** method:
+
+
+	var wikiRequest = setTimeout(function(){
+		$wikipedia.text('There was an Error while trying to reach Wikipedia');
+	}, 5000);
+	.
+	.
+	.
+        clearTimeout(wikiRequest);
+	.
+	.
+	.
+	
 ## Responsive design
